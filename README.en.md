@@ -195,7 +195,7 @@ video-spec-builder/
 ├── SKILL.md                  the skill's main file — the AI reads this first
 ├── README.md                 Traditional Chinese entry point
 ├── README.en.md              English documentation
-├── LICENSE
+├── LICENSE                   MIT License
 ├── references/               reference docs on questioning, shot breakdown, pacing — loaded as needed
 │   ├── workflow-0-1.md
 │   ├── workflow-iteration.md
@@ -209,12 +209,32 @@ video-spec-builder/
 │   └── video-spec-template.md    output template for video-spec.md
 ├── examples/
 │   └── video-spec-spacex.md      a complete video-spec example
-└── spec-mono/                    the bundled custom theme, Spec Mono
-    ├── design.md
-    ├── tokens.css
-    └── spec-mono-components.md
+├── spec-mono/                    the bundled custom theme, Spec Mono
+│   ├── design.md
+│   ├── tokens.css
+│   └── spec-mono-components.md
+└── tools/                        Windows 11 maintenance tools and gates
+    ├── dev_check.ps1             1-click local development gate
+    ├── bootstrap_dev.ps1         1-click environment bootstrap
+    ├── test_product.ps1          product specification contract tests
+    └── tests/                    maintenance contract test suite
+```
+
+## Windows Local Maintenance
+
+This fork provides native Windows 11 PowerShell development and verification gates:
+
+```powershell
+# 1-click environment bootstrap (checks Node.js, sets up .venv and dependencies)
+pwsh -NoProfile -File tools\bootstrap_dev.ps1
+
+# Run Windows development gate (compile, ruff, pytest, markdown link checks)
+pwsh -NoProfile -File tools\dev_check.ps1
+
+# Run product specification contract tests
+pwsh -NoProfile -File tools\test_product.ps1
 ```
 
 ## License
 
-MIT
+[MIT](LICENSE)
