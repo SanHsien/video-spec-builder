@@ -7,7 +7,7 @@
 
 - 保留原作者將模糊影片構想蒸餾為精確到秒分鏡腳本（`video-spec.md`）的 Agent Skill、8 份核心指導文件、Spec Mono 設計主題與 Full Code 預覽面板元件。
 - 採 Windows-first 維護：Windows 11 + PowerShell 是主要開發、除錯與完整驗收環境。
-- 公開入口維持繁體中文為主，英文鏡像放 `README.en.md`，原版簡中保留於 `README.zh.md`。
+- 公開入口維持繁體中文為主，英文鏡像放 `README.en.md`。
 - 建立可重現的 Windows 開發 gate、Windows CI job，以及逐筆審查的上游追蹤（涵蓋 commit、PR 與 issue 水位）。
 - 產品執行路徑以上游為準；本線不發佈第三方未授權套件或變更上游授權。
 
@@ -20,7 +20,6 @@
 |---|---|
 | `README.md` | 繁中主檔；加入 fork 維護資訊與 Windows 快速入口 |
 | `README.en.md` | 英文鏡像；加入 fork 維護資訊 |
-| `README.zh.md` | 上游簡體中文原版保留 |
 | `AGENTS.md` / `CLAUDE.md` / `GEMINI.md` | 本 fork 的 AI 維護單一真相源（含 Skill 運作規則與分鏡標準） |
 | `NOTICE.md` / `FORK.md` / `LICENSE` | 來源、授權與同步說明 |
 | `tools/dev_check.ps1` | Windows 本機一鍵 gate（維護工具，快速檢核零斷鏈、代碼語法與契約測試） |
@@ -46,7 +45,7 @@
 
 不要 `git push upstream`。同步方式見 [`docs/UPSTREAM.md`](docs/UPSTREAM.md)。
 
-上游更新英文 `README.en.md` 或中文 `README.zh.md` 時，把新內容併進本 fork 對應檔案。
+上游更新英文 `README.en.md` 時，把新內容併進本 fork 對應檔案。
 
 ## 換一台電腦怎麼開發
 

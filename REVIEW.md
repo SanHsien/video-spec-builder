@@ -38,7 +38,7 @@ gh repo set-default --view
 | R-01 | P2 | `.gitignore` 擴充涵蓋 Node.js、Python `.venv`、測試快取與維護報告檔 |
 | R-02 | P2 | 建立獨立維護測試目錄 `tools/tests/` 與獨立 `tools/pytest.ini`，避免測試污染 |
 | R-03 | P2 | 建立 `FORK.md`、`NOTICE.md`、`LICENSE`、`SECURITY.md`、`AGENTS.md`、`CLAUDE.md`、`GEMINI.md`，寫明對外邊界與安全性 |
-| R-04 | P3 | `README.md`（繁體中文主入口）、`README.en.md`（英文鏡像）與 `README.zh.md`（簡中原版）多語並存互指，標明 upstream 與 MIT 條款 |
+| R-04 | P3 | `README.md`（繁體中文主入口）與 `README.en.md`（英文鏡像）雙向互指，取消簡體中文語系 README，全庫 Markdown 規格文件全面正體化 |
 | R-05 | P2 | 建立 `tools/dev_check.ps1` 與 `tools/bootstrap_dev.ps1`，規範 Windows 11 原生 PowerShell 一鍵驗收門禁 |
 | R-06 | P2 | 建立 `tools/test_product.ps1` 驗證 SKILL.md、8 份 references、spec-mono 主題與 Full Code 元件結構 |
 | R-07 | P2 | 建立純 Windows 原生 CI（`ci.yml`、`codeql.yml`、`upstream-check.yml`、`dependency-freshness.yml`） |

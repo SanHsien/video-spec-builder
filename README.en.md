@@ -1,6 +1,6 @@
 <img width="2172" height="724" alt="ChatGPT Image May 16, 2026, 10_46_58 PM" src="https://github.com/user-attachments/assets/7820d93e-84b6-4e09-904c-9567c6595c57" />
 
-**English** · [繁體中文](README.md) · [简体中文](README.zh.md)
+**English** | [繁體中文](README.md)
 
 # video-spec-builder (SanHsien Maintenance Fork)
 
@@ -193,8 +193,8 @@ To use it, copy `spec-mono/design.md` into your video project root and bring `to
 ```
 video-spec-builder/
 ├── SKILL.md                  the skill's main file — the AI reads this first
-├── README.md                 English
-├── README.zh.md              中文
+├── README.md                 Traditional Chinese entry point
+├── README.en.md              English documentation
 ├── LICENSE
 ├── references/               reference docs on questioning, shot breakdown, pacing — loaded as needed
 │   ├── workflow-0-1.md

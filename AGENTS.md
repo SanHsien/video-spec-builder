@@ -42,7 +42,7 @@
 - 一般變更直接推 `origin/main`，不開功能分支、不開維護 PR。只有在需要他人審查、或改動風險高到值得先讓 CI 在 PR 上跑一輪時，才退回 **branch → PR → CI → merge**。
 - 修 bug 先補可重現失敗測試，再做最小修正。
 - 保持上游 Skill 與參考文件完整性，不擅自閹割提示詞邏輯。
-- 使用繁體中文回覆；使用者文件以繁中為主，公開入口同步維護 `README.en.md`，保留 `README.zh.md`。
+- 使用繁體中文回覆；使用者文件以繁中為主，公開入口同步維護 `README.en.md`。
 - 提交訊息用 Conventional Commit。Dependabot 或外部 fork 的變更走 PR，讀 diff 並通過 CI 後再合併。
 - `REVIEW.md` 是風險快照，不是每個一般 bug 的流水帳。
 - 不 force-push `main`，不刪 `upstream` remote。
@@ -82,7 +82,7 @@ pwsh -NoProfile -File tools\test_product.ps1
 
 ## 文件責任
 
-- `README.md` / `README.en.md` / `README.zh.md`：公開產品與 fork 入口。
+- `README.md` / `README.en.md`：公開產品與 fork 入口。
 - `FORK.md`：與上游的關係、差異、同步方式。
 - `NOTICE.md`：授權與 attribution。
 - `docs/UPSTREAM.md`：upstream remote 與審查清冊。

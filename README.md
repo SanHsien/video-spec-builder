@@ -1,6 +1,4 @@
-<img width="2172" height="724" alt="ChatGPT Image May 16, 2026, 10_46_58 PM" src="https://github.com/user-attachments/assets/7820d93e-84b6-4e09-904c-9567c6595c57" />
-
-[English](README.en.md) · [简体中文](README.zh.md) · **繁體中文**
+[English](README.en.md) | **繁體中文**
 
 # video-spec-builder（SanHsien 維護 fork）
 
@@ -9,7 +7,7 @@
 
 > 一個像影片編導的 Agent Skill。你說一句「我想做個影片」，它就步步追問，幫你把模糊構想逼成一份精確到秒、能直接落地的分鏡腳本 `video-spec.md`，交給 HyperFrames 渲染。
 
-本專案 fork 自 [`feicaiclub/video-spec-builder`](https://github.com/feicaiclub/video-spec-builder)，沿用 MIT License。本 fork 為 **Windows-first 維護型 fork**，提供 Windows 11 原生一鍵驗收門禁、純 Windows CI 工作流程、上游變更追蹤機制，並補齊零斷鏈文件與語法契約測試。英文版原創說明請見 [`README.en.md`](README.en.md)，簡體中文原版請見 [`README.zh.md`](README.zh.md)，維護細節與決策請見 [`FORK.md`](FORK.md)。
+本專案 fork 自 [`feicaiclub/video-spec-builder`](https://github.com/feicaiclub/video-spec-builder)，沿用 MIT License。本 fork 為 **Windows-first 維護型 fork**，提供 Windows 11 原生一鍵驗收門禁、純 Windows CI 工作流程、上游變更追蹤機制，並補齊零斷鏈文件與語法契約測試。英文版說明請見 [`README.en.md`](README.en.md)，維護細節與決策請見 [`FORK.md`](FORK.md)。
 
 ---
 
@@ -128,7 +126,6 @@ video-spec-builder/
 ├── SKILL.md                  Agent Skill 核心定義與提示詞
 ├── README.md                 繁體中文主入口（本檔）
 ├── README.en.md              英文鏡像
-├── README.zh.md              簡體中文原版
 ├── FORK.md                   Fork 維護決策與差異說明
 ├── NOTICE.md                 來源宣告與授權歸屬
 ├── LICENSE                   MIT License

@@ -1,10 +1,10 @@
 ---
 name: Spec Mono
 colors:
-  primary: "#000000"        # 纯黑底
-  on-primary: "#FFFFFF"     # 纯白前景
+  primary: "#000000"        # 純黑底
+  on-primary: "#FFFFFF"     # 純白前景
   surface: "#0A0A0A"        # 卡片表面
-  accent: "#FFFFFF"         # 单 accent · 默认纯白(Grok mono)· 可覆盖成任意 hex
+  accent: "#FFFFFF"         # 單 accent · 默認純白(Grok mono)· 可覆蓋成任意 hex
 typography:
   hero:
     fontFamily: Barlow Semi Condensed
@@ -63,82 +63,82 @@ motion:
 
 # Spec Mono
 
-视觉语言借鉴 **SpaceX 发射页 × xAI/Grok × X(Twitter)**。源自一套 Claude Design
-产出的设计系统(原始产出归档在 `assets/`)。
+視覺語言借鑑 **SpaceX 發射頁 × xAI/Grok × X(Twitter)**。源自一套 Claude Design
+產出的設計系統(原始產出歸檔在 `assets/`)。
 
 配套文件:
-- `tokens.css` —— 可复用 CSS(变量 + spec-sheet 装饰类 + 入场 keyframes),写镜头时直接抄。
-- `spec-mono-components.md` —— 69 个组件的逐个细规格,做具体镜头时查。
+- `tokens.css` —— 可復用 CSS(變量 + spec-sheet 裝飾類 + 入場 keyframes),寫鏡頭時直接抄。
+- `spec-mono-components.md` —— 69 個組件的逐個細規格,做具體鏡頭時查。
 
 ## Overview
 
-像航天任务控制台,不像 PPT。冷静、锋利、工程感。信息靠**字重悬崖、留白、
-1px hairline、mono caps 注脚**说话 —— 不靠颜色堆砌、不靠阴影发光、不靠装饰插画。
+像航天任務控制臺,不像 PPT。冷靜、鋒利、工程感。信息靠**字重懸崖、留白、
+1px hairline、mono caps 注腳**說話 —— 不靠顏色堆砌、不靠陰影發光、不靠裝飾插畫。
 
-**适合**:技术教程、产品演示、AI / 开发者向、数据密集型内容。
-**不适合**:面向大众的轻松 / 温暖 / 活泼内容 —— 那类换主题,别硬套。
+**適合**:技術教程、產品演示、AI / 開發者向、數據密集型內容。
+**不適合**:面向大衆的輕松 / 溫暖 / 活潑內容 —— 那類換主題,別硬套。
 
 ## Colors
 
-纯黑白底子,对比 21:1(WCAG AAA)。
+純黑白底子,對比 21:1(WCAG AAA)。
 
-- `primary #000000` —— 纯黑场景底。
-- `on-primary #FFFFFF` —— 纯白主文字。次级文字用白色降透明度:次级 66%、注脚 42%、极弱 18%。**层级靠透明度,不靠新颜色。**
-- `surface #0A0A0A` —— 卡片 / 面板表面。再抬一层用 `#141414`。
-- `accent` —— **整套系统唯一的用色**。默认纯白(Grok 式纯单色)。可覆盖成任意 hex(如 SpaceX 仪表绿 `#00E07A`);无论换成什么,**一屏只允许出现一处 accent**。
-- hairline 边线:`rgba(255,255,255,0.08)` 默认 / `0.16` 强 / `0.28` 最强。
-- 状态色仅用于数据图表:绿 `#00E07A`、红 `#FF3333`、黄 `#FFC700`。正文 / 标题 / 装饰一律不用。
+- `primary #000000` —— 純黑場景底。
+- `on-primary #FFFFFF` —— 純白主文字。次級文字用白色降透明度:次級 66%、注腳 42%、極弱 18%。**層級靠透明度,不靠新顏色。**
+- `surface #0A0A0A` —— 卡片 / 面板表面。再抬一層用 `#141414`。
+- `accent` —— **整套系統唯一的用色**。默認純白(Grok 式純單色)。可覆蓋成任意 hex(如 SpaceX 儀表綠 `#00E07A`);無論換成什麼,**一屏只允許出現一處 accent**。
+- hairline 邊線:`rgba(255,255,255,0.08)` 默認 / `0.16` 強 / `0.28` 最強。
+- 狀態色僅用於數據圖表:綠 `#00E07A`、紅 `#FF3333`、黃 `#FFC700`。正文 / 標題 / 裝飾一律不用。
 
 ## Typography
 
-| 角色 | 字体 | 用途 |
+| 角色 | 字體 | 用途 |
 |---|---|---|
-| hero | Barlow Semi Condensed 700 | 海报大字 · 章节大标题 |
-| stat | Barlow Semi Condensed 700 | 大数字(tabular-nums) |
-| body | Space Grotesk 400 | 正文 · 中英文标题 |
-| label | JetBrains Mono 500 | 编号 · 时间码 · 任务码 · 注脚 |
-| quote | Instrument Serif 400 italic | 斜体强调字 · 引用块 · 等式运算符 |
+| hero | Barlow Semi Condensed 700 | 海報大字 · 章節大標題 |
+| stat | Barlow Semi Condensed 700 | 大數字(tabular-nums) |
+| body | Space Grotesk 400 | 正文 · 中英文標題 |
+| label | JetBrains Mono 500 | 編號 · 時間碼 · 任務碼 · 注腳 |
+| quote | Instrument Serif 400 italic | 斜體強調字 · 引用塊 · 等式運算符 |
 
-- 中文用 **Source Han Sans SC(思源黑体)**,字重 400 / 700 / 900。
-  (注:HyperFrames 字体规范禁用 Noto Sans 拉丁族;思源黑体 = Noto Sans SC 中文变体,是本主题刻意选定的 CJK 字体,保留。)
-- **字重悬崖**:只用 `400 / 600 / 700 / 800`,**跳过 500**。相邻层级故意拉开两档。
-- **字距**:hero / stat 大字 `-0.03 ~ -0.04em`;body `-0.025em → 0`;label mono caps `0.18 ~ 0.22em`;任务字串(`SCN-03` / `T-MINUS`)`0.32em`。
-- **行高**:标题 `0.86 ~ 1.0`,正文 `1.55 ~ 1.7`。
-- **招牌动作**:一句几何 sans 里挑 **1 个关键词**换 `quote` 斜体衬线 + accent 色做强调。整句斜体只用于引用块。
+- 中文用 **Source Han Sans SC(思源黑體)**,字重 400 / 700 / 900。
+  (注:HyperFrames 字體規範禁用 Noto Sans 拉丁族;思源黑體 = Noto Sans SC 中文變體,是本主題刻意選定的 CJK 字體,保留。)
+- **字重懸崖**:只用 `400 / 600 / 700 / 800`,**跳過 500**。相鄰層級故意拉開兩檔。
+- **字距**:hero / stat 大字 `-0.03 ~ -0.04em`;body `-0.025em → 0`;label mono caps `0.18 ~ 0.22em`;任務字串(`SCN-03` / `T-MINUS`)`0.32em`。
+- **行高**:標題 `0.86 ~ 1.0`,正文 `1.55 ~ 1.7`。
+- **招牌動作**:一句幾何 sans 裏挑 **1 個關鍵詞**換 `quote` 斜體襯線 + accent 色做強調。整句斜體只用於引用塊。
 
 ## Elevation
 
-**全程 flat —— 0 阴影。** 任何元素都不用 box-shadow / drop-shadow。
+**全程 flat —— 0 陰影。** 任何元素都不用 box-shadow / drop-shadow。
 
-深度只靠两样东西:**1px hairline 边框** + **表面色阶**(`#000000` → `#0A0A0A` → `#141414`)。
-强调靠换色和字号悬崖,绝不靠发光 / 投影。
+深度只靠兩樣東西:**1px hairline 邊框** + **表面色階**(`#000000` → `#0A0A0A` → `#141414`)。
+強調靠換色和字號懸崖,絕不靠發光 / 投影。
 
 ## Components
 
-下列是常用范式的概括。**每个组件的精确规格(描边宽度、比例、布局)见 `spec-mono-components.md`** —— 做具体镜头时查那份。复用 CSS 见 `tokens.css`。
+下列是常用範式的概括。**每個組件的精確規格(描邊寬度、比例、布局)見 `spec-mono-components.md`** —— 做具體鏡頭時查那份。復用 CSS 見 `tokens.css`。
 
-- **卡片 / 面板**:`{surface}` 底 + 1px hairline 边 + `rounded.lg (8px)`。可在四角贴十字针脚(`.cross`,12px 臂 · 1px 描边)。padding 用 `spacing.xl`。
-- **字幕高亮**:逐词字幕,默认 42% 白,念到的词换 `{accent}` + 3px accent 底线扫入,念过的词回纯白。无底色块。
-- **大数字**:Barlow Semi Condensed · `{accent}` · tabular-nums;单位缩到 0.32em、纯白、上偏。
-- **引用块**:Instrument Serif italic;一个关键词换 `{accent}`;巨型左引号 opacity 0.18 当装饰。
-- **反白闪屏**:`{primary}` ↔ 纯白用 `steps(1)` 瞬切,6-12 帧,**每支视频 ≤ 2 次**。
-- **装饰层(atmosphere)**:场景背景三选一 —— `dot-grid` / `hairline-rules` / `scan-lines`,一个场景最多 1 种;边角用 `registration-marks`(十字针脚)+ mono caps 任务编号。装饰是工程图味,不是花边,不叠加。
-- **图标**:Lucide 图标集,描边默认 1.5px(与 hairline 等重),颜色 `on-primary` 66%,被强调才 accent。
+- **卡片 / 面板**:`{surface}` 底 + 1px hairline 邊 + `rounded.lg (8px)`。可在四角貼十字針腳(`.cross`,12px 臂 · 1px 描邊)。padding 用 `spacing.xl`。
+- **字幕高亮**:逐詞字幕,默認 42% 白,念到的詞換 `{accent}` + 3px accent 底線掃入,念過的詞回純白。無底色塊。
+- **大數字**:Barlow Semi Condensed · `{accent}` · tabular-nums;單位縮到 0.32em、純白、上偏。
+- **引用塊**:Instrument Serif italic;一個關鍵詞換 `{accent}`;巨型左引號 opacity 0.18 當裝飾。
+- **反白閃屏**:`{primary}` ↔ 純白用 `steps(1)` 瞬切,6-12 幀,**每支視頻 ≤ 2 次**。
+- **裝飾層(atmosphere)**:場景背景三選一 —— `dot-grid` / `hairline-rules` / `scan-lines`,一個場景最多 1 種;邊角用 `registration-marks`(十字針腳)+ mono caps 任務編號。裝飾是工程圖味,不是花邊,不疊加。
+- **圖標**:Lucide 圖標集,描邊默認 1.5px(與 hairline 等重),顏色 `on-primary` 66%,被強調才 accent。
 
 ## Do's and Don'ts
 
 **Do**
-- 纯黑底 + 纯白字,层级靠透明度与字号悬崖。
-- 一屏只用一处 accent —— 它永远代表"此刻的焦点"。
-- 1px hairline、`rounded.sm (2px)` 默认圆角、8-pt 间距栅格。
-- 数字一律 `font-variant-numeric: tabular-nums`。
-- 入场用 `expo.out`,位移 8-16px,每个元素都从不可见动画进场。
+- 純黑底 + 純白字,層級靠透明度與字號懸崖。
+- 一屏只用一處 accent —— 它永遠代表"此刻的焦點"。
+- 1px hairline、`rounded.sm (2px)` 默認圓角、8-pt 間距柵格。
+- 數字一律 `font-variant-numeric: tabular-nums`。
+- 入場用 `expo.out`,位移 8-16px,每個元素都從不可見動畫進場。
 
 **Don't**
-- ❌ 不用阴影 / 发光 / 投影(0 阴影是铁律)。
-- ❌ 不用渐变 —— 唯一例外:面积图填充 `accent 42% → 0%`。
-- ❌ 不用装饰插画 / 手绘人物(章节封面插画除外)。
-- ❌ 一屏不出现第二处 accent 色。
-- ❌ 不用 2px 描边、不用胶囊全圆角、不用 32/48/56 这类非 8-pt 间距。
-- ❌ 不用回弹(bounce)缓动 —— 唯一例外:贴纸式标签的弹入。
-- ❌ 字重不用 500(破坏对比悬崖)。
+- ❌ 不用陰影 / 發光 / 投影(0 陰影是鐵律)。
+- ❌ 不用漸變 —— 唯一例外:面積圖填充 `accent 42% → 0%`。
+- ❌ 不用裝飾插畫 / 手繪人物(章節封面插畫除外)。
+- ❌ 一屏不出現第二處 accent 色。
+- ❌ 不用 2px 描邊、不用膠囊全圓角、不用 32/48/56 這類非 8-pt 間距。
+- ❌ 不用回彈(bounce)緩動 —— 唯一例外:貼紙式標籤的彈入。
+- ❌ 字重不用 500(破壞對比懸崖)。

@@ -27,7 +27,6 @@ def test_required_overlay_files_exist() -> None:
     required = (
         "README.md",
         "README.en.md",
-        "README.zh.md",
         "FORK.md",
         "NOTICE.md",
         "AGENTS.md",
