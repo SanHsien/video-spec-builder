@@ -1,10 +1,14 @@
 <img width="2172" height="724" alt="ChatGPT Image May 16, 2026, 10_46_58 PM" src="https://github.com/user-attachments/assets/7820d93e-84b6-4e09-904c-9567c6595c57" />
 
-[English](README.md) · **中文**
+[English](README.en.md) · [繁體中文](README.md) · **简体中文**
 
-# video-spec-builder
+# video-spec-builder (SanHsien 维护 fork)
 
+[![CI](https://github.com/SanHsien/video-spec-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/SanHsien/video-spec-builder/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen)](LICENSE) ![Agent Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet) [![skills.sh Compatible](https://img.shields.io/badge/skills.sh-Compatible-brightgreen)](https://skills.sh)
+
+> 本专案 fork 自 [`feicaiclub/video-spec-builder`](https://github.com/feicaiclub/video-spec-builder)，聚焦于 Windows-first 开发者体验、自动化验证门禁与上游变更追查。维护决策请参阅 [`FORK.md`](FORK.md)。
+
 
 > 一个像视频编导的 skill。你说一句"我想做个视频",它就追着问你,帮你把想法理成一份能落地的分镜脚本。
 

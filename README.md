@@ -1,216 +1,189 @@
 <img width="2172" height="724" alt="ChatGPT Image May 16, 2026, 10_46_58 PM" src="https://github.com/user-attachments/assets/7820d93e-84b6-4e09-904c-9567c6595c57" />
 
-**English** · [中文](README.zh.md)
+[English](README.en.md) · [简体中文](README.zh.md) · **繁體中文**
 
-# video-spec-builder
+# video-spec-builder（SanHsien 維護 fork）
 
+[![CI](https://github.com/SanHsien/video-spec-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/SanHsien/video-spec-builder/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen)](LICENSE) ![Agent Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet) [![skills.sh Compatible](https://img.shields.io/badge/skills.sh-Compatible-brightgreen)](https://skills.sh)
 
-> A skill that works like a video director. You say "I want to make a video," and it grills you with questions until your idea is a script you can actually shoot.
+> 一個像影片編導的 Agent Skill。你說一句「我想做個影片」，它就步步追問，幫你把模糊構想逼成一份精確到秒、能直接落地的分鏡腳本 `video-spec.md`，交給 HyperFrames 渲染。
 
-I built this skill after realizing the hard part of making a video isn't the rendering. It's figuring out what you actually want.
+本專案 fork 自 [`feicaiclub/video-spec-builder`](https://github.com/feicaiclub/video-spec-builder)，沿用 MIT License。本 fork 為 **Windows-first 維護型 fork**，提供 Windows 11 原生一鍵驗收門禁、純 Windows CI 工作流程、上游變更追蹤機制，並補齊零斷鏈文件與語法契約測試。英文版原創說明請見 [`README.en.md`](README.en.md)，簡體中文原版請見 [`README.zh.md`](README.zh.md)，維護細節與決策請見 [`FORK.md`](FORK.md)。
 
-You've got a vague idea in your head: a product video, a short for social, a company intro. But it's fuzzy. The moment you try to build it, the details get you — how long each shot runs, what's on screen, what comes first and what comes later. You probably haven't pinned them all down, and you might not even be able to put them into words.
+---
 
-video-spec-builder gets you through that part. Install it, then tell your AI "I want to make a video" inside Codex or Claude Code, and it takes over the conversation. It listens to your brief the way a director would, then keeps asking: Who's this for? How long? What's the one line people should walk away with? Which shot carries the weight? Anywhere you go vague, or skip something, it stops and pushes you to fill it in.
+## 為什麼需要 video-spec-builder？
 
-A few rounds of that, and the fuzzy idea becomes a `video-spec.md`: a shot-by-shot script, timed to the second, every shot written out. Hand that to HyperFrames and it renders into a real video.
+做影片最卡人的往往不是最後一步的渲染，而是前面那一步：**想清楚**。
 
-It won't shoot the video for you, and it won't invent the idea. It does one thing: push you, and stay with you, until the idea is something you can actually build.
+你心裡或許只有一個模糊的念頭：想做個產品介紹、短影音、或公司簡報。可是一旦要動手落地，每個鏡頭該停留幾秒、畫面上擺放什麼元素、視覺節奏如何編排、先講什麼後講什麼，這些細節很難憑空說得清楚。
 
-## What it helps with
+`video-spec-builder` 就是陪你跨過這道門檻的工具。安裝完成後，在 Claude Code、Cursor、Codex 或 Antigravity 中說一句「我想做個影片」，AI 就會接管對話，像專業編導聽你講 brief 一樣步步追問：
+- 這支影片給誰看？要發在哪個平台？
+- 預期時長多久？最想讓觀眾記住哪一句核心訊息？
+- 哪幾個鏡頭是全片重心？節奏該緊湊還是舒緩？
 
-The problem it solves is "I have an idea but I can't explain it." A few situations where it earns its keep:
+只要你回答得太籠統、或跳過了關鍵資訊，它就會停下來追問，直到模糊想法收斂為一份結構嚴謹、精確到秒的 `video-spec.md` 分鏡腳本。
 
-- You know the feeling you want but can't describe the actual picture. It refuses words like "premium" or "high-impact" and keeps after you until you can describe real shots and real motion.
-- You have an idea but never thought parts of it through. Maybe you've got the opening and the ending but not the middle. Maybe it never crossed your mind that a section could use captions, or that visuals can move to the beat of the music. It brings those up.
-- You have plenty of raw material but no order to it. A script, selling points, a pile of assets — it helps you cut that into individual shots and put them in sequence.
+---
 
-In the end it writes all of it into a script: what each shot shows, how it's presented, how long it holds, how it cuts to the next one.
+## 安裝方式
 
-There are two ways to use it. With no script yet, it talks you through the whole thing from scratch and produces a `video-spec.md`. With a script already there and just one thing to change, you tell it what you want different; it asks enough to be sure, makes the change, and checks whether it knocked anything else loose.
-
-## The workflow
-
-It's two skills working in sequence. video-spec-builder sits upstream and turns your idea into a script. HyperFrames sits downstream and turns the script into video.
-
-```
-       You: "I want to make a video"
-                │
-                ▼
-   ┌────────────────────────┐
-   │   video-spec-builder   │   asks, breaks it into shots
-   └────────────────────────┘
-                │
-                ▼
-          video-spec.md           shot-by-shot script, timed
-                │
-                ▼   /hyperframes
-   ┌────────────────────────┐
-   │       HyperFrames      │   renders from the script
-   └────────────────────────┘
-                │
-                ▼
-          finished video
-```
-
-So before you start, you'll want both skills installed.
-
-## Install
-
-I mostly use this skill in **Codex**, and after that **Claude Code**. Those are the two setups it works best in.
-
-Before anything else, install two things: HyperFrames (the renderer, downstream) and video-spec-builder (this skill). Both go in through the `skills` CLI, one command each:
+透過一行指令安裝至 Claude Code、Cursor 或 Codex：
 
 ```bash
-npx skills add heygen-com/hyperframes
+# 安裝至當前專案
 npx skills add feicaiclub/video-spec-builder
-```
 
-Each command installs once and covers Codex, Claude Code, Cursor and the rest. You don't install separately for each tool.
-
-Two scopes to know about. By default it installs into the current folder (project-level), so it only works in the project where you ran the command. If you make videos often, add `-g` to install globally, available everywhere:
-
-```bash
+# 或全域安裝（隨處可用）
 npx skills add feicaiclub/video-spec-builder -g
 ```
 
-Never used the `skills` CLI? Nothing to set up. `npx` pulls a copy just to run and leaves nothing behind. Needs Node 18 or newer.
+> 需要 Node.js 18 或以上版本。
 
-## Using it
+---
 
-### Making a video from scratch
+## 使用方式
 
-Once it's installed, just talk to your AI in plain language inside Codex or Claude Code:
+### 1. 從零開始發想分鏡
 
-```
-I want to make a 3-minute product demo, posting it on YouTube
-```
+安裝後，在對話介面中直接以自然語言開場：
 
-It takes over and starts asking. You don't need to track its internal steps; it just talks with you. First it pins down the basics: who it's for, where it's going, how long, the core message. Then it takes stock of the material you have. Then it settles the style and pacing, picks a visual theme, and finally uses reference videos and counter-examples to calibrate.
-
-It's a real conversation, not a form to fill in. Answer vaguely and it digs; miss something and it fills it in. When you're done, it writes out `video-spec.md`.
-
-### Changing a video you already have
-
-If there's already a `video-spec.md` in the project, just say what you want:
-
-```
-Shot 3 is too fast, slow it down; swap the background music for something quieter
+```text
+我想做一個 3 分鐘的產品 Demo 影片，預計發布在 YouTube
 ```
 
-It checks what you're after, looks at whether the change touches other shots, then updates the script.
+Agent Skill 會自動啟動追問協議，先確認目標受眾、核心訴求與時長，再清點現有素材，最後確立視覺主題與節奏，輸出結構完整的 `video-spec.md`。
 
-### Rendering it
+### 2. 修改既有分鏡
 
-Once the script is final, hand it to HyperFrames:
+專案目錄下若已存在 `video-spec.md`，直接提出調整要求：
 
+```text
+第 3 個鏡頭節奏太快了，放慢一點；背景音樂換成更安靜的風格
 ```
+
+Agent 會分析該修改是否影響前後鏡頭與整體時長守恆，並精準更新分鏡腳本。
+
+### 3. 交給 HyperFrames 渲染
+
+腳本確認無誤後，交由 HyperFrames 執行渲染：
+
+```text
 /hyperframes
 ```
 
-> In Claude Code, besides triggering it by talking, you can also call it directly with `/video-spec-builder`.
+---
 
-## What HyperFrames can and can't do
+## HyperFrames 渲染邊界
 
-Worth spelling this out, because it decides whether your script is worth the paper it's on.
+HyperFrames 的核心原理是**以 HTML/CSS/代碼繪製並渲染影片**。
 
-HyperFrames renders video from HTML. That one fact is the root of everything it can and can't do. If HTML, CSS, and code can draw it, HyperFrames can turn it into video. If HTML can't draw it, HyperFrames can't either.
+- **擅長領域**：文字排版、標題動效、逐字高亮字幕、版面佈局、轉場效果、動態圖表、UI Mockups、幾何動效。只要代碼能畫出來的，都能精準流暢地合成。
+- **邊界與限制**：
+  - **無法憑空繪製手繪插畫**：卡通人物、插圖角色需先準備好外部圖片素材。
+  - **無法生成真實攝錄影片**：真人演出、實拍鏡頭需自行準備實拍影片片段。
+  - **無法生成逼真照片**：寫實風景、人像需外部素材配合。
+  - **不負責音樂原創作曲**：配樂與高質感真人旁白請自行備妥。
 
-What it's **good at** is text and layout work: title animation, captions, word-by-word highlighting, page layout, transitions, charts, UI mockups, geometric animation. Anything you can draw with code, it handles cleanly.
+簡單來說，HyperFrames 是強大的**合成與裝配工具**，而非無中生有的創作工具。輸入高質量的素材，渲染出的影片就會極具質感。
 
-What it **can't do** — know this before you write the script, because however good the script is, if HyperFrames can't render it, the work is wasted:
+---
 
-- It can't draw illustrations. Hand-drawn characters, painterly visuals, cartoon figures — it can't produce those, and writing code won't get you there. Code draws shapes and charts, not artwork.
-- It can't generate live-action footage. A real filmed shot, a person performing — it can't conjure that out of nothing.
-- It can't generate photorealistic images.
-- It can generate a voiceover with AI (text-to-speech) in a pinch, but AI narration has an obvious machine tone. For real quality, record it yourself or hire someone.
-- It won't compose background music for you.
+## 視覺主題系統
 
-The short version: HyperFrames is an **assembly** tool, not a **creation** tool. It takes the material you've prepared — video clips, images, voiceover, music — cuts and composites it, adds text and motion, and puts together a finished video. Assembly is its job.
+影片的色彩、字型、動態與轉場風格由「主題（Theme）」決定。
 
-So here's the thing worth remembering: how good the video looks comes down to the material you feed it. Good material and HyperFrames assembles it sharply. Weak material and HyperFrames can't save it. Video clips, images, voiceover, music — these are worth preparing carefully up front. They decide the quality, not HyperFrames.
+### 8 款 HyperFrames 內建風格
 
-## Visual themes
-
-What a video looks like — colors, fonts, motion, transition style — is decided by a "theme." You either use one of HyperFrames' built-in presets, or write your own.
-
-### The 8 HyperFrames presets
-
-HyperFrames ships 8 themes. Name one and it's yours:
-
-| Theme | Mood | Good for |
+| 主題名稱 | 風格氛圍 | 適用場景 |
 |---|---|---|
-| Swiss Pulse | Precise, restrained, Swiss type | SaaS, data, dev tools, dashboards |
-| Velvet Standard | Premium, timeless | Luxury, enterprise software, keynotes, investor decks |
-| Deconstructed | Industrial, raw | Tech launches, security products, anything with a punk edge |
-| Maximalist Type | Loud, kinetic | Big launches, milestone announcements, high-energy hype |
-| Data Drift | Futuristic, immersive | AI products, ML platforms, frontier tech |
-| Soft Signal | Intimate, warm | Wellness brands, personal stories, lifestyle products |
-| Folk Frequency | Cultural, vivid | Consumer apps, food, community products |
-| Shadow Cut | Dark, cinematic | Security products, dramatic reveals, serious storytelling |
+| **Swiss Pulse** | 精準、克制、瑞士字型排版 | SaaS、數據分析、開發者工具、後台系統 |
+| **Velvet Standard** | 高級、典雅、永恆質感 | 奢華品牌、企業級軟體、Keynote 演說、投資人簡報 |
+| **Deconstructed** | 工業風、原始硬朗 | 硬核科技發布會、資安防護、極客產品 |
+| **Maximalist Type** | 狂熱、強烈動感、大字型張力 | 重磅發布會、里程碑宣布、高能量宣傳 |
+| **Data Drift** | 未來感、沉浸式、流動線條 | AI 產品、機器學習平台、前沿科技展示 |
+| **Soft Signal** | 親切、溫潤、溫暖生活 | 健康身心品牌、個人故事、生活風格產品 |
+| **Folk Frequency** | 文化韻味、生動活潑 | 消費型 App、美食餐飲、社群文化產品 |
+| **Shadow Cut** | 暗黑、電影感、戲劇張力 | 網路安全、重磅揭露、嚴肅敘事 |
 
-Once you've picked one, write its name into `video-spec.md`.
+### 隨庫內建主題：Spec Mono
 
-### Writing your own
+本倉庫附帶一套預先調校完成的工程暗色科技風主題：**Spec Mono**（黑白極簡、幾何架構、SpaceX × Grok 硬核工業質感）。
 
-If none of the presets fit, write your own. HyperFrames has a few hard rules for custom themes, nothing complicated:
+包含於 `spec-mono/` 目錄：
+- `design.md`：主題規格定義檔案（HyperFrames 讀取核心）。
+- `tokens.css`：開箱即用的色彩、字型、間距變數與裝飾樣式。
+- `spec-mono-components.md`：該主題下 69 個組件的詳細規格。
 
-- A theme is a single `design.md` file, placed at the root of your video project. HyperFrames finds and reads it automatically when rendering.
-- The format is fixed. A block of YAML up top for the design variables: colors, fonts, corner radius, spacing, motion. Below it, a set of fixed sections describing the design rules in prose: Overview, Colors, Typography, Elevation, Components, Do's and Don'ts.
-- If your theme uses a font HyperFrames doesn't ship with, put the font's `.woff2` files in the project's `fonts/` folder yourself.
+完整 React 18 組件預覽與調整面板源碼，請參閱 [`Full Code/`](Full Code/)。
 
-Drop a finished `design.md` into the video project root and the theme is live.
+---
 
-### A theme I made for you: Spec Mono
+## 專案目錄結構
 
-Writing a `design.md` from scratch takes some work, so I made one ahead of time and put it in this repo. It's called **Spec Mono**: pure black and white, the geometric, restrained, engineered look of SpaceX × Grok. It's done — use it as is.
-
-<!-- placeholder: drop the Spec Mono preview image at spec-mono/preview.png, then uncomment the line below -->
-<!-- ![Spec Mono preview](spec-mono/preview.png) -->
-
-Download to see complete design [视频组件库 v2 · 硅谷暗色科技风.pdf](https://github.com/user-attachments/files/27866436/v2.pdf)
-<img width="1020" height="1440" alt="视频组件库 v2 · 硅谷暗色科技风" src="https://github.com/user-attachments/assets/bef576da-73ba-4bad-a9c4-3c673e652eaa" />
-
-The `spec-mono/` folder holds three files:
-
-| File | What it is |
-|---|---|
-| `design.md` | the theme itself — this is what HyperFrames reads |
-| `tokens.css` | a ready-made CSS file: color/font/spacing variables, plus styles for some decorative elements |
-| `spec-mono-components.md` | the per-component spec for all 69 components under this theme |
-
-To use it, copy `spec-mono/design.md` into your video project root and bring `tokens.css` along. It's already written to HyperFrames' format, so it renders right away.
-
-> **Heads up:** the `design.md` tokens and `spec-mono-components.md` here are only a distilled, condensed extract. The complete theme design code is generated and downloaded from Claude Design. For the full implementation code, see the `Full Code/` folder.
-
-## What's in this repo
-
-```
+```text
 video-spec-builder/
-├── SKILL.md                  the skill's main file — the AI reads this first
-├── README.md                 English
-├── README.zh.md              中文
-├── LICENSE
-├── references/               reference docs on questioning, shot breakdown, pacing — loaded as needed
-│   ├── workflow-0-1.md
-│   ├── workflow-iteration.md
-│   ├── question-bank.md
-│   ├── scene-breakdown.md
-│   ├── components-catalog.md
-│   ├── pacing-rules.md
-│   ├── spec-rules.md
-│   └── dialogue-style.md
+├── SKILL.md                  Agent Skill 核心定義與提示詞
+├── README.md                 繁體中文主入口（本檔）
+├── README.en.md              英文鏡像
+├── README.zh.md              簡體中文原版
+├── FORK.md                   Fork 維護決策與差異說明
+├── NOTICE.md                 來源宣告與授權歸屬
+├── LICENSE                   MIT License
+├── package.json              專案 npm 定義檔
+├── references/               編導追問與拆鏡規則庫
+│   ├── workflow-0-1.md       0 到 1 分鏡產出流程
+│   ├── workflow-iteration.md 分鏡增量修改流程
+│   ├── question-bank.md      編導追問庫
+│   ├── scene-breakdown.md    分鏡顆粒度原則
+│   ├── components-catalog.md HyperFrames 組件型錄
+│   ├── pacing-rules.md       節奏配置規則
+│   ├── spec-rules.md         分鏡語法規範
+│   └── dialogue-style.md     旁白風格校準
 ├── templates/
-│   └── video-spec-template.md    output template for video-spec.md
+│   └── video-spec-template.md video-spec.md 標準輸出模板
 ├── examples/
-│   └── video-spec-spacex.md      a complete video-spec example
-└── spec-mono/                    the bundled custom theme, Spec Mono
-    ├── design.md
-    ├── tokens.css
-    └── spec-mono-components.md
+│   └── video-spec-spacex.md  完整示範案例
+├── spec-mono/                內建 Spec Mono 主題規格與 Tokens
+│   ├── design.md
+│   ├── tokens.css
+│   └── spec-mono-components.md
+├── Full Code/                React 18 / JSX 預覽與調整面板組件庫
+│   ├── app.jsx
+│   ├── styles.css
+│   ├── tokens.css
+│   ├── tweaks-panel.jsx
+│   └── sections/             分區渲染組件
+└── tools/                    Windows 11 原生維護與驗收門禁
+    ├── bootstrap_dev.ps1     一鍵初始化環境
+    ├── dev_check.ps1         一鍵品質驗收門禁
+    ├── test_product.ps1      產品規格驗證腳本
+    └── tests/                維護與契約測試套件
 ```
 
-## License
+---
 
-MIT
+## 本機開發與驗收（Windows 11 原生）
+
+在 Windows 11 PowerShell 環境下一鍵初始化並執行門禁驗收：
+
+```powershell
+# 初始化開發環境（建立 Python .venv、安裝依賴）
+pwsh -NoProfile -File tools\bootstrap_dev.ps1
+
+# 執行驗收門禁（compileall、ruff、pytest 契約測試、Markdown 相對連結零斷鏈檢查）
+pwsh -NoProfile -File tools\dev_check.ps1
+
+# 執行產品規格檢查
+pwsh -NoProfile -File tools\test_product.ps1
+```
+
+更多開發環境指引與決策記錄，請見 [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) 與 [`docs/DECISIONS.md`](docs/DECISIONS.md)。
+
+---
+
+## 授權條款
+
+本專案沿用原作者之 [MIT License](LICENSE)。
