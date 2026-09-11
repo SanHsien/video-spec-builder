@@ -44,6 +44,7 @@ gh repo set-default --view
 | R-07 | P2 | 建立純 Windows 原生 CI（`ci.yml`、`codeql.yml`、`upstream-check.yml`、`dependency-freshness.yml`） |
 | R-08 | P2 | 建立上游追蹤水位防重複巡檢機制，鎖定基準 Commit `9e73275`、PR `#4`、Issue `#3` |
 | R-09 | P2 | 建立 `package.json` 提供專案 npm 元資料與 lint/test 驗證腳本 |
+| R-10 | P2 | 全庫代碼審查與靜態分析硬化：消除 `tools/tests/test_upstream_updates.py` 未使用的 `noqa: I001`（RUF100），達成全庫 `ruff check .` 零警報 |
 
 ## 接受、不改契約
 
@@ -54,4 +55,7 @@ gh repo set-default --view
 ## 尚未宣稱範圍
 
 - **不宣稱** 已將任何修改提交回原作者上游（依 fork 維護政策，所有 PR/commit 僅限於 `SanHsien/video-spec-builder`）。
-- **不宣稱** 已合入 PR #4（Atlas Cloud 生成腳本），因該功能依賴外部第三方雲端生成服務，與本專案專注於分鏡腳本規格生成的定位不符，維持評估並記於 `docs/DECISIONS.md`。
+- **不宣稱** 已合入 PR #4（Atlas Cloud 影片素材生成腳本）：經詳細架構與資安評估，該功能調用外部 ByteDance Seedance 2.0 API 生成 MP4，與本專案專注於分鏡腳本規格層（Spec Layer）的職責邊界衝突，且涉及付費 API Key 憑證管理與第三方雲端服務依賴，上游維護者超過一個月未合併，維持追蹤並於 `docs/DECISIONS.md` 與 `docs/UPSTREAM.md` 完整記明決策。
+- **不宣稱** 已合入 PR #2（Chinese to english）：上游原作者已關閉（CLOSED）且未採納；本 fork 已自主建立繁中主入口 + 英文鏡像雙語架構，且全庫既有規格 Markdown 已全面正體化。
+- **不宣稱** 已採納 Issue #1（第三方 socialistic.ai 商業試玩位）與 Issue #3（StackMap 知識圖譜收錄通知）：均為外部宣傳與目錄收錄通知，無代碼缺陷與修改需求。
+

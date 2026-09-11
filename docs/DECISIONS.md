@@ -36,11 +36,11 @@
 **決定**：
 1. **上游分支**：僅 `upstream/main` 一個分支，無其他歷史或草稿分支。本 fork 唯一長期跟隨分支為 `upstream/main`。
 2. **上游 PR（共 2 筆）**：
-   - `#2` CLOSED：Chinese to english（全英文覆寫，已被作者拒絕）。本 fork 採取繁中主入口 + 英文鏡像 + 簡中原版並存方針。
-   - `#4` OPEN：feat: add optional Atlas Cloud video asset generation。引入第三方 Seedance 雲端 API，本專案定位為純規格生成層（Spec Layer）而非雲端代碼生成器，且外部 API 涉及憑證與非開源收費服務，因此**維持追蹤、暫不合入**。
+   - `#2` CLOSED：Chinese to english（全英文覆寫，已被作者拒絕）。**不引進**。本 fork 採取繁中主入口（`README.md`）+ 英文鏡像（`README.en.md`）雙語方針，且全庫規格文件已全面正體化。
+   - `#4` OPEN：feat: add optional Atlas Cloud video asset generation。引入外部 ByteDance Seedance 2.0 / Atlas Cloud 影片生成 API。**維持追蹤、暫不合入**。理由：(1) 本專案定位為純「分鏡腳本規格層（Spec Layer）」，不宜擴張為第三方雲端生成客戶端；(2) 涉及 `ATLASCLOUD_API_KEY` 付費憑證依賴；(3) 上游原作者未合併定案。未來若有 AI 生成需求，應以獨立外掛插件形式提供，避免污染核心模板。
 3. **上游 Issue（共 2 筆）**：
-   - `#1` OPEN：在线试玩 video-spec-builder（第三方 socialistic.ai 宣傳試玩位）。無代碼缺陷，維持現狀。
-   - `#3` OPEN：Your project is on StackMap（StackMap 知識圖譜收錄通知）。無代碼缺陷，維持現狀。
+   - `#1` OPEN：在线试玩 video-spec-builder（第三方 socialistic.ai 商業試玩位宣傳）。**不引進**。無代碼缺陷，避免將使用者分鏡數據外洩至第三方平台。
+   - `#3` OPEN：Your project is on StackMap（StackMap 知識圖譜收錄通知）。**不引進（記錄歸檔）**。純外部目錄收錄通知，無代碼缺陷。
 4. **水位鎖定**：`tools/upstream_baseline.json` 鎖定 Commit `9e73275b35e827b8f7af4bca900790909d86e63e`、PR 水位 `4`、Issue 水位 `3`。
 
 **理由**：

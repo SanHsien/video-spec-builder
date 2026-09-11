@@ -16,7 +16,7 @@ import pytest
 REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO_ROOT / "tools"))
 
-import check_upstream_updates as checker  # noqa: I001
+import check_upstream_updates as checker
 
 BASELINE = {
     "repo": "https://github.com/example/product.git",

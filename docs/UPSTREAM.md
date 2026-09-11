@@ -55,15 +55,16 @@ Baseline 代表「已審查」，不代表「全部已合併」。
 
 | PR 編號 | 標題 | 狀態 | 本輪評估結論與理由 |
 |---|---|---|---|
-| `#2` | Chinese to english | CLOSED | **已拒絕**。試圖全盤英文替換。本 fork 採取繁中主入口 + 英文鏡像 + 簡中原版多語並存方針。 |
-| `#4` | feat: add optional Atlas Cloud video asset generation | OPEN | **維持追蹤、暫不合入**。引入外部 Seedance 雲端 API，與純規格層（Spec Layer）定位偏離，且涉及付費雲端憑證。 |
+| `#2` | Chinese to english | CLOSED | **不引進**。試圖全盤以英文覆蓋。本 fork 採取繁中主入口（`README.md`）+ 英文鏡像（`README.en.md`）雙語方針，且全庫既有 Markdown 規格文件已全面正體化。 |
+| `#4` | feat: add optional Atlas Cloud video asset generation | OPEN | **維持追蹤、暫不合入**。引入外部 ByteDance Seedance / Atlas Cloud API 生成 MP4 影片素材。經評估：(1) 與本專案專注於分鏡腳本規格生成（Spec Layer）的核心邊界衝突；(2) 涉及外部付費 API 憑證與聯網依賴；(3) 上游原作者未合併定案。維持追蹤，詳細分析記於 `docs/DECISIONS.md`。 |
 
 ### 三、上游 Issue 盤點（共 2 筆）
 
 | Issue 編號 | 標題 | 狀態 | 本輪評估結論與理由 |
 |---|---|---|---|
-| `#1` | 在线试玩 video-spec-builder，直接聊出 video-spec.md 发给剪辑同学 | OPEN | **第三方試玩位宣傳**。屬於 socialistic.ai 平台宣傳，無程式碼或缺陷修正需求，記錄並維持狀態。 |
-| `#3` | Your project is on StackMap — a curated map of the AI stack | OPEN | **工具地圖登錄通知**。StackMap 知識圖譜收錄通知，無代碼改動需求，維持狀態。 |
+| `#1` | 在线试玩 video-spec-builder，直接聊出 video-spec.md 发给剪辑同学 | OPEN | **不引進**。屬於第三方商業平台（socialistic.ai）宣傳試玩位與 README 徽章導流，涉及將使用者生成的分鏡留存於第三方伺服器，無代碼缺陷修正需求。 |
+| `#3` | Your project is on StackMap — a curated map of the AI stack | OPEN | **不引進（記錄歸檔）**。StackMap AI 知識圖譜收錄通知，無代碼或文件缺陷，記錄專案「Spec-first control」之外部定位評價。 |
+
 
 ### 四、防重複評估機制（Watermark 機制）
 
