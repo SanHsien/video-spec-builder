@@ -159,6 +159,15 @@ const __TWEAKS_STYLE = `
 // ── useTweaks ───────────────────────────────────────────────────────────────
 // Single source of truth for tweak values. setTweak persists via the host
 // (__edit_mode_set_keys → host rewrites the EDITMODE block on disk).
+// Edit-mode messages come from the embedding host (the parent frame). Accept
+// only messages whose source is that frame, and pin the origin to the
+// parent's where the browser exposes it (location.ancestorOrigins).
+function isFromHost(e) {
+  if (window.parent === window || e.source !== window.parent) return false;
+  const ancestors = window.location.ancestorOrigins;
+  return !ancestors || ancestors.length === 0 || e.origin === ancestors[0];
+}
+
 function useTweaks(defaults) {
   const [values, setValues] = React.useState(defaults);
   // Accepts either setTweak('key', value) or setTweak({ key: value, ... }) so a
@@ -207,6 +216,9 @@ function TweaksPanel({ title = 'Tweaks', noDeckControls = false, children }) {
   React.useEffect(() => {
     if (!hasDeckStage || railEnabled) return undefined;
     const onMsg = (e) => {
+      // From the host frame, or re-posted by deck-stage in this same window.
+      const sameWindow = e.source === window && e.origin === window.location.origin;
+      if (!sameWindow && !isFromHost(e)) return;
       if (e.data && e.data.type === '__omelette_rail_enabled') setRailEnabled(true);
     };
     window.addEventListener('message', onMsg);
@@ -250,6 +262,7 @@ function TweaksPanel({ title = 'Tweaks', noDeckControls = false, children }) {
 
   React.useEffect(() => {
     const onMsg = (e) => {
+      if (!isFromHost(e)) return;
       const t = e?.data?.type;
       if (t === '__activate_edit_mode') setOpen(true);
       else if (t === '__deactivate_edit_mode') setOpen(false);
