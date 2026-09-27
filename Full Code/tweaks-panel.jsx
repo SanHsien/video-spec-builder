@@ -160,12 +160,13 @@ const __TWEAKS_STYLE = `
 // Single source of truth for tweak values. setTweak persists via the host
 // (__edit_mode_set_keys → host rewrites the EDITMODE block on disk).
 // Edit-mode messages come from the embedding host (the parent frame). Accept
-// only messages whose source is that frame, and pin the origin to the
-// parent's where the browser exposes it (location.ancestorOrigins).
+// only messages whose source is that frame and whose origin is verified
+// against the parent's location.ancestorOrigins entry.
 function isFromHost(e) {
   if (window.parent === window || e.source !== window.parent) return false;
   const ancestors = window.location.ancestorOrigins;
-  return !ancestors || ancestors.length === 0 || e.origin === ancestors[0];
+  const parentOrigin = ancestors && ancestors.length > 0 ? ancestors[0] : null;
+  return typeof parentOrigin === 'string' && parentOrigin.length > 0 && e.origin === parentOrigin;
 }
 
 function useTweaks(defaults) {
