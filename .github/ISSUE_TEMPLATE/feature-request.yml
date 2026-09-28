@@ -1,0 +1,25 @@
+name: "✨ Feature Request"
+description: "提出對 video-spec-builder 維護型 fork 的功能改善或文件強化建議"
+labels: ["enhancement"]
+body:
+  - type: "markdown"
+    attributes:
+      value: |
+        感謝你的建議！請詳細說明希望新增或改進的規格。
+        如果是 HyperFrames 渲染器本身的底層能力變更，請優先向 HyperFrames 官方社群反饋。
+
+  - type: "textarea"
+    id: "feature-description"
+    attributes:
+      label: "需求與建議描述"
+      description: "請清楚說明你想解決的問題或希望改善的流程"
+    validations:
+      required: true
+
+  - type: "textarea"
+    id: "context"
+    attributes:
+      label: "應用場景與範例"
+      description: "這個功能適用於哪些影片類型或提示詞流程？"
+    validations:
+      required: false

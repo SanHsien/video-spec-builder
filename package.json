@@ -1,0 +1,27 @@
+{
+  "name": "video-spec-builder",
+  "version": "1.0.0",
+  "description": "Distill video ideas into second-accurate storyboard specs (video-spec.md) for HyperFrames.",
+  "main": "Full Code/app.jsx",
+  "scripts": {
+    "test": "pwsh -NoProfile -File tools/dev_check.ps1",
+    "test:product": "pwsh -NoProfile -File tools/test_product.ps1"
+  },
+  "keywords": [
+    "agent",
+    "hyperframes",
+    "video-generation",
+    "video-spec",
+    "skill",
+    "windows"
+  ],
+  "author": "feicaiclub",
+  "contributors": [
+    "SanHsien"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SanHsien/video-spec-builder.git"
+  }
+}
