@@ -166,7 +166,8 @@ function isFromHost(e) {
   if (window.parent === window || e.source !== window.parent) return false;
   const ancestors = window.location.ancestorOrigins;
   const parentOrigin = ancestors && ancestors.length > 0 ? ancestors[0] : null;
-  return typeof parentOrigin === 'string' && parentOrigin.length > 0 && e.origin === parentOrigin;
+  return typeof parentOrigin === 'string' && parentOrigin.length > 0
+    && parentOrigin !== 'null' && e.origin === parentOrigin;
 }
 
 function useTweaks(defaults) {
