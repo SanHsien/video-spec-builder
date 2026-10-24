@@ -20,7 +20,7 @@
 |---|---|
 | `README.md` | 繁中主檔；加入 fork 維護資訊與 Windows 快速入口 |
 | `README.en.md` | 英文鏡像；加入 fork 維護資訊 |
-| `AGENTS.md` / `CLAUDE.md` | 本 fork 的 AI 維護單一真相源（含 Skill 運作規則與分鏡標準） |
+| `AGENTS.md` | 本 fork 的 AI 維護單一真相源（含 Skill 運作規則與分鏡標準） |
 | `NOTICE.md` / `FORK.md` / `LICENSE` | 來源、授權與同步說明 |
 | `tools/dev_check.ps1` | Windows 本機一鍵 gate（維護工具，快速檢核零斷鏈、代碼語法與契約測試） |
 | `tools/bootstrap_dev.ps1` | Windows 本機一鍵初始化與環境準備（檢查 Node.js、建立 Python 虛擬環境） |
