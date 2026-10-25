@@ -34,7 +34,7 @@ Baseline 代表「已審查」，不代表「全部已合併」。
 ## 2026-09-11：fork 起點
 
 本 fork 自上游 `main` `9e73275b35e827b8f7af4bca900790909d86e63e`
-（`Update README.md and README.zh.md with video preview and styling`）建立。
+（`新增 Full Code 完整实现代码;README 补充 Spec Mono 说明`）建立。
 此 SHA 設為第一個 `reviewed_through`（短 SHA 為 `9e73275`）。
 之後的上游 commit 才需要進入審查清冊。
 

@@ -28,7 +28,7 @@ Full Code/                React 18 / JSX 預覽與調整面板元件庫
   ├── styles.css          主樣式表
   ├── tokens.css          變數表
   ├── tweaks-panel.jsx    參數調整面板
-  └── sections/           分區渲染元件（10 份 .jsx）
+  └── sections/           分區渲染元件（11 份 .jsx）
 tools/                    fork 維護工具（Windows gate、上游檢查、相對連結檢查、依賴檢查）
   └── tests/              維護契約測試
 docs/                     fork 維護與治理文件

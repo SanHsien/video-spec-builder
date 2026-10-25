@@ -13,6 +13,15 @@
 - 維護 gate 不預設安裝重型套件。
 - 上游更新必須逐筆審查。
 
+## 2026-10-25：上游複審與 ruff 0.17 延後
+
+**決定**：
+1. **上游複審**：`upstream/main` 仍為 `9e73275`，無新 commit；`git ls-remote` 只見 `refs/pull/2`、`refs/pull/4`，排程檢查（2026-10-24）確認無 `#4` 以上新 PR、無 `#3` 以上新 Issue。`#4` 仍 OPEN（head `78f1973`），維持「不引進」。水位不變，只推進 `reviewed_date`。
+2. **`#4` 觸發條件**：上游作者合併 `#4`，或上游把素材生成改為可選外掛、且不要求本 repo 保存付費 API 憑證時，重新評估移植。
+3. **ruff 0.17.2**：記入 `.github/dependency-deferrals.json`，不調高下限。
+
+**理由**：`ruff 0.17.2` 在 gate 範圍（`check --select E9,F`）與 pytest 全綠，`>=0.16` 已涵蓋；CI 本就安裝最新版。PyPI 出現新於 `0.17.2` 的版本時自動恢復提醒。
+
 ## 2026-09-11：依賴新鮮度追蹤
 
 **決定**：`tools/check_dependency_freshness.py` 納管 `requirements-dev.txt`。
