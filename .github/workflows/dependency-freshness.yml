@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - requirements-dev.txt
+      - .github/dependency-deferrals.json
       - tools/check_dependency_freshness.py
       - .github/dependabot.yml
       - .github/workflows/dependency-freshness.yml
