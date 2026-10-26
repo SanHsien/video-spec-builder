@@ -40,3 +40,9 @@ def test_link_with_wrong_case_is_reported(repo: Path) -> None:
 def test_link_with_wrong_case_is_reported(repo: Path) -> None:
     # Windows resolves this; GitHub (case-sensitive) renders a 404.
     assert len(_check(repo, "[g](docs/guide.md)")) == 1
+
+
+def test_link_with_markdown_title_resolves(repo: Path) -> None:
+    assert _check(repo, '[g](docs/Guide.md "the guide")') == []
+    assert _check(repo, "[g](docs/Guide.md 'the guide')") == []
+    assert len(_check(repo, '[g](docs/Nope.md "the guide")')) == 1

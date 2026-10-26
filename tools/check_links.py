@@ -16,7 +16,9 @@ from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parent.parent
 LINK_PATTERN = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
-IMAGE_PATTERN = re.compile(r"!\[[^\]]*\]\(([^)]+)\)")
+LINK_TITLE_PATTERN = re.compile(r"""\s+(?:"[^"]*"|'[^']*')\s*$""")
+LINK_TITLE_PATTERN = re.compile(r"""\s+(?:"[^"]*"|'[^']*')\s*$""")
+IMAGE_PATTERN =re.compile(r"!\[[^\]]*\]\(([^)]+)\)")
 HTML_SRC_PATTERN = re.compile(r"""(?is)<img[^>]+src=["']([^"']+)["']""")
 SKIP_PREFIXES = ("http://", "https://", "mailto:", "tel:", "#")
 SKIP_NAMES = {
@@ -82,7 +84,7 @@ def _exists_with_exact_case(candidate: Path) -> bool:
 
 
 def _missing_relative(path: Path, target: str) -> str | None:
-    target = target.strip().strip("<>")
+    target = LINK_TITLE_PATTERN.sub("", target.strip()).strip("<>")
     if not target or target.startswith(SKIP_PREFIXES):
         return None
     file_part = unquote(target.split("#", 1)[0])
