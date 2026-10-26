@@ -8,6 +8,7 @@
 
 from __future__ import annotations
 
+import os
 import re
 import sys
 from pathlib import Path
@@ -59,6 +60,27 @@ def iter_documents() -> list[Path]:
     return required
 
 
+def _exists_with_exact_case(candidate: Path) -> bool:
+    """`exists()` that also rejects a wrong-case spelling inside the repo.
+
+    Windows resolves `docs/guide.md` to `docs/Guide.md`, so the local gate passes
+    a link that GitHub's case-sensitive file view answers with a 404.
+    """
+    normalized = Path(os.path.normpath(candidate))
+    if not normalized.exists():
+        return False
+    try:
+        parts = normalized.relative_to(os.path.normpath(ROOT)).parts
+    except ValueError:
+        return True
+    current = ROOT
+    for part in parts:
+        if part not in os.listdir(current):
+            return False
+        current = current / part
+    return True
+
+
 def _missing_relative(path: Path, target: str) -> str | None:
     target = target.strip().strip("<>")
     if not target or target.startswith(SKIP_PREFIXES):
@@ -67,7 +89,7 @@ def _missing_relative(path: Path, target: str) -> str | None:
     if not file_part:
         return None
     resolved = (path.parent / file_part).resolve()
-    if resolved.exists():
+    if _exists_with_exact_case(path.parent / file_part):
         return None
     try:
         shown = resolved.relative_to(ROOT)
