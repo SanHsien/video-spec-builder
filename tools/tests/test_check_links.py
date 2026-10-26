@@ -46,3 +46,17 @@ def test_link_with_markdown_title_resolves(repo: Path) -> None:
     assert _check(repo, '[g](docs/Guide.md "the guide")') == []
     assert _check(repo, "[g](docs/Guide.md 'the guide')") == []
     assert len(_check(repo, '[g](docs/Nope.md "the guide")')) == 1
+
+
+def test_link_in_fenced_code_block_is_ignored(repo: Path) -> None:
+    body = "```md\n[example](does/not/exist.md)\n```\n~~~\n[e](nope.md)\n~~~\n"
+    assert _check(repo, body) == []
+
+
+def test_link_in_inline_code_is_ignored(repo: Path) -> None:
+    assert _check(repo, "write `[x](does/not/exist.md)` like so") == []
+
+
+def test_link_after_code_block_is_still_checked(repo: Path) -> None:
+    body = "```\n[a](ok.md)\n```\n[b](docs/Nope.md)\n"
+    assert len(_check(repo, body)) == 1

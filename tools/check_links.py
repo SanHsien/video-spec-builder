@@ -17,8 +17,11 @@ from urllib.parse import unquote
 ROOT = Path(__file__).resolve().parent.parent
 LINK_PATTERN = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 LINK_TITLE_PATTERN = re.compile(r"""\s+(?:"[^"]*"|'[^']*')\s*$""")
-LINK_TITLE_PATTERN = re.compile(r"""\s+(?:"[^"]*"|'[^']*')\s*$""")
-IMAGE_PATTERN =re.compile(r"!\[[^\]]*\]\(([^)]+)\)")
+FENCED_CODE_PATTERN = re.compile(
+    r"^[ \t]*(`{3,}|~{3,}).*?^[ \t]*\1[ \t]*$", re.DOTALL | re.MULTILINE
+)
+INLINE_CODE_PATTERN = re.compile(r"`[^`\n]+`")
+IMAGE_PATTERN = re.compile(r"!\[[^\]]*\]\(([^)]+)\)")
 HTML_SRC_PATTERN = re.compile(r"""(?is)<img[^>]+src=["']([^"']+)["']""")
 SKIP_PREFIXES = ("http://", "https://", "mailto:", "tel:", "#")
 SKIP_NAMES = {
@@ -105,6 +108,9 @@ def check_document(path: Path) -> list[str]:
     text = path.read_text(encoding="utf-8")
     # 忽略 HTML 註解中的範例或占位連結
     clean_text = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)
+    # 程式碼區塊與行內程式碼裡的 [x](y) 是範例文字，不是連結
+    clean_text = FENCED_CODE_PATTERN.sub("", clean_text)
+    clean_text = INLINE_CODE_PATTERN.sub("", clean_text)
     for pattern in (LINK_PATTERN, IMAGE_PATTERN, HTML_SRC_PATTERN):
         for match in pattern.finditer(clean_text):
             missing = _missing_relative(path, match.group(1))
