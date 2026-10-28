@@ -110,3 +110,7 @@ pwsh -NoProfile -File tools\test_product.ps1
    - 旁白字數必須與該鏡頭分配秒數匹配（中文語速約每秒 3.5～4 字，英文約每秒 2.5～3 單字）。
 3. **Spec Mono 主題遵循**：
    - 若採用 Spec Mono，組件標籤必須嚴格對照 `spec-mono/spec-mono-components.md`，樣式屬性遵循 `spec-mono/tokens.css`。
+
+## 路線圖
+
+- `ROADMAP.md` 是本 repo 後續工作的單一真相源。完成或新增工作時，在同一個 commit 更新它：做完的列刪掉、新工作加進去。不要在其他文件另列待辦。
