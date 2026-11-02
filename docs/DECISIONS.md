@@ -1,5 +1,11 @@
 # 維護決策
 
+## 2026-11-03：解除 ruff deferral 並提高下限
+
+**決定**：依路線圖驗收要求，將 `requirements-dev.txt` 的 ruff 下限由 `>=0.16` 提高至 `>=0.17.3`，移除已失效的 ruff deferral；pytest 維持 `>=9`。
+
+**理由與證據**：PyPI 最新 ruff 為 `0.17.3`，已超過延後審查的 `0.17.2`；Dependency freshness 最近一次執行（2026-11-01，run `41295914614`）失敗，本機修改前 `--strict` 亦以 exit 1 回報 ruff `REVIEW UPDATE`。已閱讀 [0.17.3 發行紀錄](https://github.com/astral-sh/ruff/releases/tag/0.17.3)，PyPI 宣告支援 Python `>=3.7`。在系統暫存目錄建立獨立 venv，使用 ruff `0.17.3` 與 pytest `9.2.0` 執行 `ruff check --select E9,F --target-version py310 tools` 及 `python -m pytest -c tools/pytest.ini tools/tests`，分別為 `All checks passed!` 與 `49 passed`（皆 exit 0）。以下限鎖定本次實測版本；本次升級依據明確驗收要求，不是一般依賴紅燈的消音方式。2026-10-25 的延後決策保留為歷史紀錄。
+
 ## 2026-09-11：建立 Windows-first 維護型 fork
 
 **決定**：fork `feicaiclub/video-spec-builder`，保留 MIT License 與完整歷史。本線預設分支用 `main`。本線聚焦繁中文件、Windows 開發 gate、Windows CI，以及逐筆審查的上游追蹤。
