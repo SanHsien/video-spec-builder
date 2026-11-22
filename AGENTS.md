@@ -107,7 +107,7 @@ pwsh -NoProfile -File tools\test_product.ps1
    - 腳本中若需 B-roll，必須明確標記是代碼組件（Code component）或外部素材（External footage）。
 2. **時間碼規範**：
    - 時間精確到秒（例如 `00:00 - 00:05`），累計總時長嚴格守恆。
-   - 旁白字數必須與該鏡頭分配秒數匹配（中文語速約每秒 3.5～4 字，英文約每秒 2.5～3 單字）。
+   - 旁白字數必須與該鏡頭分配秒數匹配；語速估算以 `references/scene-breakdown.md`（中文 3-4 字/秒）與 `references/pacing-rules.md`（各影片類型的旁白密度）為準，不在這裡另記數字。
 3. **Spec Mono 主題遵循**：
    - 若採用 Spec Mono，組件標籤必須嚴格對照 `spec-mono/spec-mono-components.md`，樣式屬性遵循 `spec-mono/tokens.css`。
 
